@@ -1,0 +1,126 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: SOAJS Petstore
+host: localhost
+basePath: /demo
+schemes:
+  - http
+paths:
+  /pet:
+    post:
+      tags:
+        - pet
+      summary: Add a new pet to the store
+      operationId: addPet
+      parameters:
+        - in: body
+          name: pet
+          description: Pet object that needs to be added to the store
+          required: true
+          schema:
+            $ref: "#/definitions/Pet"
+      responses:
+        "200":
+          $ref: "#/responses/success"
+        "400":
+          $ref: "#/responses/invalidInput"
+  /pet/{id}:
+    get:
+      tags:
+        - pet
+      summary: get pet by id
+      operationId: getPet
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        "200":
+          $ref: "#/responses/success"
+        "401":
+          $ref: "#/responses/invalid"
+    delete:
+      tags:
+        - pet
+      summary: delete a pet by id
+      operationId: deletePet
+      parameters:
+        - $ref: "#/parameters/id"
+      responses:
+        "200":
+          $ref: "#/responses/success"
+        "401":
+          $ref: "#/responses/invalid"
+    put:
+      tags:
+        - pet
+      summary: Update an existing pet
+      operationId: updatePet
+      parameters:
+        - $ref: "#/parameters/id"
+        - in: body
+          name: pet
+          description: Pet object that needs to be updated in the store
+          required: true
+          schema:
+            $ref: "#/definitions/Pet"
+      responses:
+        "200":
+          $ref: "#/responses/success"
+        "401":
+          $ref: "#/responses/invalid"
+  /pets:
+    get:
+      tags:
+        - pets
+      summary: get all pets
+      operationId: getAll
+      responses:
+        "200":
+          $ref: "#/responses/success"
+        "402":
+          description: store is empty
+responses:
+  success:
+    description: success
+  invalid:
+    description: invalid id
+  invalidInput:
+    description: invalid input
+parameters:
+  id:
+    in: path
+    name: id
+    description: Pet mongo id
+    required: true
+    type: string
+definitions:
+  Pet:
+    type: object
+    required:
+      - breed
+      - name
+      - gender
+      - age
+      - quantity
+      - price
+      - photoUrls
+    properties:
+      breed:
+        type: string
+      name:
+        type: string
+        example: doggie
+      age:
+        type: string
+      gender:
+        type: string
+      color:
+        type: string
+      quantity:
+        type: integer
+      price:
+        type: string
+      photoUrls:
+        type: string
+      description:
+        type: string
