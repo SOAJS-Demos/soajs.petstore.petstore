@@ -91,18 +91,6 @@ module.exports = {
 			}
 		},
 		"get": {
-			"/pet/:id": {
-				"_apiInfo": {
-					"l": "get pet",
-					"group": "pet"
-				},
-				"mw": __dirname + "/lib/mw/pet_id_get.js",
-				"imfv": {
-					"commonFields": [
-						"id"
-					]
-				}
-			},
 			"/pets": {
 				"_apiInfo": {
 					"l": "get all pets",

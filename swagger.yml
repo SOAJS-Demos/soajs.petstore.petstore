@@ -26,18 +26,6 @@ paths:
         "400":
           $ref: "#/responses/invalidInput"
   /pet/{id}:
-    get:
-      tags:
-        - pet
-      summary: get pet by id
-      operationId: getPet
-      parameters:
-        - $ref: "#/parameters/id"
-      responses:
-        "200":
-          $ref: "#/responses/success"
-        "401":
-          $ref: "#/responses/invalid"
     delete:
       tags:
         - pet
